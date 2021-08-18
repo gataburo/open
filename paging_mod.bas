@@ -62,7 +62,7 @@ Sub pagingAll()
     Worksheets(asi).Select
 End Sub
 
-Sub pagingUntilSelected2()
+Sub pagingUntilSelected()
     Dim sheet_obj As Object
     Dim i As Integer
     Dim n As Integer
