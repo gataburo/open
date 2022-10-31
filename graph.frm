@@ -7,7 +7,7 @@ Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} graph
    ClientWidth     =   17070
    OleObjectBlob   =   "graph.frx":0000
    ShowModal       =   0   'False
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "graph"
 Attribute VB_GlobalNameSpace = False
@@ -16,7 +16,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private Declare Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpClassName As String, ByVal lpWindowName As String) As Long
 Private Const GWL_STYLE = (-16)
-Private Const GRAPH_IMAGE As String = "E:\kodeemon\make someting\vba\Graph.bmp"
+Private Const GRAPH_IMAGE As String = ".\Graph.bmp"
 
 Private Sub UserForm_Initialize()
     Dim hwnd, nindex As Long
@@ -30,27 +30,27 @@ Private Sub UserForm_Initialize()
     nindex = GetWindowLong(hwnd, GWL_STYLE)
     Call SetWindowLong(hwnd, GWL_STYLE, nindex Or WS_THICKFRAME)
     
-    'ƒOƒ‰ƒt‚Ì‘¶Ýƒ`ƒFƒbƒN
+    'ã‚°ãƒ©ãƒ•ã®å­˜åœ¨ãƒã‚§ãƒƒã‚¯
     If ActiveSheet.ChartObjects.Count = 0 Then Exit Sub
     
-    'ƒOƒ‰ƒt‚ð‰æ‘œ‚Æ‚µ‚Ä•Û‘¶
+    'ã‚°ãƒ©ãƒ•ã‚’ç”»åƒã¨ã—ã¦ä¿å­˜
     ActiveSheet.ChartObjects(1).Chart.Export GRAPH_IMAGE
     
-    '‰æ‘œƒtƒ@ƒCƒ‹‚ðImage‚É“Ç‚Ýž‚Ý
+    'ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’Imageã«èª­ã¿è¾¼ã¿
     If Len(Dir(GRAPH_IMAGE)) > 0 Then
         With Image1
-            '.PictureSizeMode = fmPictureSizeModeClip      'Šg‘åEk¬‚È‚µ
-            '.PictureAlignment = fmPictureAlignmentCenter  '’†‰›”z’u
-            '.BorderStyle = fmBorderStyleNone              '˜g‚È‚µ
+            '.PictureSizeMode = fmPictureSizeModeClip      'æ‹¡å¤§ãƒ»ç¸®å°ãªã—
+            '.PictureAlignment = fmPictureAlignmentCenter  'ä¸­å¤®é…ç½®
+            '.BorderStyle = fmBorderStyleNone              'æž ãªã—
             .Picture = LoadPicture(GRAPH_IMAGE)
         End With
-        '‰æ‘œƒtƒ@ƒCƒ‹‚ðíœ
+        'ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤
         'Kill GRAPH_IMAGE
     End If
 End Sub
 
 Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
-    '‰æ‘œƒtƒ@ƒCƒ‹‚ðíœ
+    'ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤
     If Len(Dir(GRAPH_IMAGE)) > 0 Then
         Kill GRAPH_IMAGE
     End If
